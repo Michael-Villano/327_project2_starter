@@ -152,10 +152,10 @@ void closeFile(std::fstream& myfile) {
  * 			SUCCESS if all data is written and outputfilename closes OK
  * */
 int writeArraytoFile(const std::string &outputfilename) {
-	std::fstream myStream;
-	std::string bashMakeFile = "cp ./output/placeholder_serves_no_purpose_but_to_ensure_directory_commit " + outputfilename;
-	std::system(bashMakeFile.c_str());
-	if (!openFile(myStream, outputfilename)) {
+	std::ofstream myStream;
+	myStream.open(outputfilename);
+
+	if (!myStream.is_open()) {
 	    return FAIL_FILE_DID_NOT_OPEN;
 	}
 	else if (next == 0) {
